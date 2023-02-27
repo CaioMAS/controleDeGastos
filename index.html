@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+     <!--Font Awesome-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Controle Financeiro</title>
+</head>
+<body>
+    <header>
+        <h1>Controle financeiro</h1>
+    </header>
+
+    <section class="monthlySummary">
+        <div class="summaryTable">
+            <div>
+                <h4>Entradas</h4>
+                <i class="fa-solid fa-arrow-up"></i>              
+            </div>
+            <h3>R$ 2.000,00</h3>
+        </div>
+
+        <div class="summaryTable">
+            <div>
+                <h4>Saídas</h4>
+                <i class="fa-solid fa-arrow-down"></i>
+            </div>
+            <h3>R$ 1.000,00</h3>
+        </div>
+
+        <div class="summaryTable">
+            <div>
+                <h4>Saldo</h4>
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+            </div>
+            <h3>R$ 1.000,00</h3>
+        </div>
+
+        <div class="reference">
+            <div>
+                <h4>Mês de referência</h4>
+                <select name="" id="">
+                    <option value="marco">Março</option>
+                    <option value="abril">Abril</option>
+                </select>
+            </div>
+            <button>Adicionar novo mês</button>
+        </div>       
+    </section>
+
+    <section class="inputGlobals">
+        <div class="inputEntries">
+            <label for="">Data</label>
+            <input type="date" name="" id="dataDoItem">
+        </div>
+        <div class="inputEntries">
+            <label for="">Classificação</label>
+            <input id="classificacaoDoItem" type="text">
+        </div>
+        <div class="inputEntries">
+            <label for="">Descrição</label>
+            <input id="descricaoDoItem" type="text">
+        </div>
+        <div class="inputEntries">
+            <label for="">Valor</label>
+            <input type="number" name="" id="valorDoItem">
+        </div>
+        <div>
+            <input type="radio" name="entrada-saida" id="entrada">
+            <label for="entrada">Entrada</label>
+            
+            <input type="radio" name="entrada-saida" id="saída">
+            <label for="saida">Saída</label>            
+        </div>
+        <button id="btnAddItem">Adicionar</button>
+    </section>
+
+    <section class="tableContainer">
+        <table class="tg" id="tableGeral">
+            <thead>
+              <tr>
+                <td class="columHead">Data</td>
+                <td class="columHead">Classificação</td>
+                <td class="columHead">Descrição</td>
+                <td class="columHead">Valor</td>                
+              </tr>
+            </thead>
+            <tbody id="bodyTable">
+                
+            </tbody>
+            </table>
+    </section>
+
+
+    <script src="index.js"></script>
+</body>
+</html>
