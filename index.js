@@ -4,9 +4,9 @@ let idObject = 0
 
 const calcularSaldo = () => {
     const somar = lista.reduce((valorAcumulado, item) => {
-        return (Number(valorAcumulado) + Number(item.valorDaCompraComSinal)).toFixed(2)
+        return Number(valorAcumulado) + Number(item.valorDaCompraComSinal)
     }, 0)
-    return somar
+    return somar.toFixed(2)
 }
 
 const calcularEntrada = () => {
@@ -17,8 +17,19 @@ const calcularEntrada = () => {
             valorEntrada += Number(lista[i].valorDaCompraComSinal)
         }
     }
+    return valorEntrada.toFixed(2)
+}
 
-    return valorEntrada
+const calcularSaida = () => {
+
+    let valorSaida = 0
+    for (let i = 0; i < lista.length; i++) {
+        if (lista[i].valorDaCompraComSinal < 0) {
+            valorSaida += Number(lista[i].valorDaCompraComSinal)
+        }
+    }
+    return valorSaida.toFixed(2)
+   
 }
 
 
@@ -66,13 +77,16 @@ const createTable = (dataDaCompra, classificacaoDaCompra, descricaoDaCompra, val
             }
         }
 
-        const saldoFinal = document.getElementById('saldoFinal')
-        saldoFinal.textContent = `R$ ${calcularSaldo()}`
+    const saldoFinal = document.getElementById('saldoFinal')
+    saldoFinal.textContent = `R$ ${calcularSaldo()}`
 
-        const entradaDisplay = document.getElementById('valorDeEntrada')
-        entradaDisplay.textContent = `R$ ${calcularEntrada()}`
+    const entradaDisplay = document.getElementById('valorDeEntrada')
+    entradaDisplay.textContent = `R$ ${calcularEntrada()}`
 
-        console.table(lista)
+    const saidaDisplay = document.getElementById('valorSaida')
+    saidaDisplay.textContent = `R$ ${calcularSaida()}`
+
+    console.table(lista)
 
     })
 
@@ -83,9 +97,24 @@ const createTable = (dataDaCompra, classificacaoDaCompra, descricaoDaCompra, val
 
 }
 
+const createClass = () => {
+    const classificacaoAdicionada = document.getElementById('classificacao')
+    const select = document.querySelector('#options')
+    const newOption = document.createElement('option')
+    newOption.value = classificacaoAdicionada.value
+    newOption.text = classificacaoAdicionada.value
+
+    select.appendChild(newOption)
+}
+
+document.getElementById('addClassificacao').addEventListener('click', () => {
+    createClass()
+    const classificacaoAdicionada = document.getElementById('classificacao').value = ""
+})
+
 const cleanInput = () => {
     dataDaCompra = document.getElementById('dataDoItem').value = ""
-    classificacaoDaCompra = document.getElementById('classificacaoDoItem').value = ""
+    
     descricaoDaCompra = document.getElementById('descricaoDoItem').value = ""
     valorDaCompra = document.getElementById('valorDoItem').value = ""
     const inputEntradaSaida = document.getElementsByName('entradaSaida').value = ""
@@ -99,10 +128,17 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
     ev.preventDefault()
 
     const dataDaCompra = document.getElementById('dataDoItem').value
-    const classificacaoDaCompra = document.getElementById('classificacaoDoItem').value
+    const select = document.querySelector('#options')
+    const indice = select.selectedIndex
+    const valor = select.value
+    const text = select.options[indice].text
+    const classificacaoDaCompra = text
+
+
     const descricaoDaCompra = document.getElementById('descricaoDoItem').value
     const valorDaCompra = document.getElementById('valorDoItem').value
     const inputEntradaSaida = document.getElementsByName('entradaSaida')
+
     let valorDaCompraComSinal = 0
 
     for (let i = 0; i < inputEntradaSaida.length; i++) {
@@ -145,6 +181,9 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
 
     const entradaDisplay = document.getElementById('valorDeEntrada')
     entradaDisplay.textContent = `R$ ${calcularEntrada()}`
+
+    const saidaDisplay = document.getElementById('valorSaida')
+    saidaDisplay.textContent = `R$ ${calcularSaida()}`
 
     console.table(lista)
 

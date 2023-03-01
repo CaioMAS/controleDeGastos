@@ -20,7 +20,7 @@
                 <h4>Entradas</h4>
                 <i class="fa-solid fa-arrow-up"></i>              
             </div>
-            <h3 id="valorDeEntrada"></h3>
+            <h3 id="valorDeEntrada">R$ 0.00</h3>
         </div>
 
         <div class="summaryTable">
@@ -28,7 +28,7 @@
                 <h4>Saídas</h4>
                 <i class="fa-solid fa-arrow-down"></i>
             </div>
-            <h3>R$ 1.000,00</h3>
+            <h3 id="valorSaida">R$ 0.00</h3>
         </div>
 
         <div class="summaryTable">
@@ -36,7 +36,7 @@
                 <h4>Saldo</h4>
                 <i class="fa-solid fa-hand-holding-dollar"></i>
             </div>
-            <h3 id="saldoFinal"></h3>
+            <h3 id="saldoFinal">R$ 0.00</h3>
         </div>
 
         <div class="reference">
@@ -57,8 +57,10 @@
             <input type="date" name="" id="dataDoItem">
         </div>
         <div class="inputEntries">
-            <label for="">Classificação</label>
-            <input id="classificacaoDoItem" type="text">
+            <label for="options">Classificação</label>
+            <select name="options" id="options">
+                <option value="" selected></option>                
+            </select>
         </div>
         <div class="inputEntries">
             <label for="">Descrição</label>
@@ -76,6 +78,11 @@
             <label for="saida">Saída</label>            
         </div>
         <button id="btnAddItem">Adicionar</button>
+    </section>
+
+    <section class="addClassificacao">
+        <input id="classificacao" type="text">
+        <button id="addClassificacao">Add classificação</button>
     </section>
 
     <section class="tableContainer">

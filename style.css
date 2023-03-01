@@ -84,7 +84,7 @@ h1 {
     padding: 1em;
 }
 
-#btnAddItem {
+#btnAddItem, #addClassificacao {
     margin-right: 1em;
     padding: 0.2em 1em;    
     text-transform: uppercase;
@@ -100,16 +100,34 @@ h1 {
     outline: none;
 }
 
-#btnAddItem:hover {
+#btnAddItem:hover, #addClassificacao:hover {
     background-color: #23c483;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
     transform: translateY(-7px);
 }
 
-#btnAddItem:active {
+#btnAddItem:active, #addClassificacao:active {
     transform: translateY(-1px);
 }
+
+
+/* Adicionar classificação*/
+.addClassificacao {
+    border: 1px solid black;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;    
+    margin-bottom: 2em;
+}
+
+.addClassificacao input {
+    margin-right: 1em;
+}
+
+
 
 /* Tabela */
 
