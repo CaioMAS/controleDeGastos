@@ -104,6 +104,7 @@ h1 {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2em;
+    padding-bottom: 1em;
 }
 
 .inputEntries {
@@ -126,6 +127,11 @@ h1 {
     border: none;
     border-radius: .5em;
 }
+
+.inputGlobals button {
+    margin-right: 1em;
+}
+
 
 #btnAddItem,
 #addClassificacao,
