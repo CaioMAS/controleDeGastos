@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+
 }
 
 :root {
@@ -16,7 +16,7 @@ body {
     background-color: var(--cor-fundo);
 }
 
-header{
+header {
     height: 4em;
     margin-bottom: 2em;
     background-color: var(--cor-cabecalho);
@@ -31,8 +31,8 @@ h1 {
 
 /* Resumo de entradas e saídas */
 
-.monthlySummary{
-     
+.monthlySummary {
+
     width: 80%;
     margin: 0 auto;
     margin-bottom: 2em;
@@ -41,12 +41,12 @@ h1 {
     align-items: center;
     justify-content: space-between;
     gap: 1em;
-    
+
 }
 
 .summaryTable {
-    background-color: var(--cor-card);   
-    margin: 0 auto;    
+    background-color: var(--cor-card);
+    margin: 0 auto;
     width: 12em;
     height: 5em;
     display: flex;
@@ -57,19 +57,19 @@ h1 {
 }
 
 .summaryTable div {
-    
+
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+
 }
 
 .reference {
     background-color: var(--cor-card);
-    margin: 0 auto;    
+    margin: 0 auto;
     width: 12em;
-    height: 5em;     
+    height: 5em;
     border-radius: .6em;
     display: flex;
     flex-direction: column;
@@ -89,7 +89,7 @@ h1 {
 
 .reference div {
     margin: 0 auto;
-    
+
 }
 
 /* Input de entrada */
@@ -109,7 +109,7 @@ h1 {
 .inputEntries {
     display: flex;
     flex-direction: column;
-    padding: 1em;    
+    padding: 1em;
 }
 
 .inputEntries label {
@@ -127,32 +127,25 @@ h1 {
     border-radius: .5em;
 }
 
-#btnAddItem, #addClassificacao, #addMes {
-    margin-right: 1em;
-    padding: 0.2em 1em;    
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    font-weight: 500;
-    color: #000;
-    background-color: #c0b6b6;
+#btnAddItem,
+#addClassificacao,
+#addMes {
     border: none;
-    border-radius: 45px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
+    border-radius: .2em;
+    background-color: var(--cor-cabecalho);
+    color: white;
+    padding: .3em .5em;
     cursor: pointer;
-    outline: none;
 }
 
-#btnAddItem:hover, #addClassificacao:hover, #addMes:hover {
-    background-color: #23c483;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    color: #fff;
-    transform: translateY(-7px);
+#btnAddItem:hover,
+#addClassificacao:hover,
+#addMes:hover {
+    background-color: var(--cor-fundo);
+    color: black;
+    font-weight: bold;
 }
 
-#btnAddItem:active, #addClassificacao:active, #addMes:active {
-    transform: translateY(-1px);
-}
 
 
 /* Adicionar classificação*/
@@ -164,7 +157,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     margin-bottom: 2em;
 }
 
@@ -181,65 +174,101 @@ h1 {
 .tableContainer {
     width: 80%;
     margin: 0 auto;
-    
+    padding-bottom: 5em;
+
 
 }
 
 .tg {
     width: 100%;
-    border-collapse:collapse;
-    border-spacing:0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 .tg .columHead {
-    border-color:black;
+    border-color: black;
     line-height: 1em;
     background-color: var(--cor-cabecalho);
-    border-width:1px;    
-    font-size:14px;
-    overflow:hidden;
-    padding:10px 5px;
-    word-break:normal;
-    font-weight:bold;
-    text-align:center;
-    vertical-align:top
-    
+    border-width: 1px;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: top
 }
 
 .tg .columnBody {
-    border-color:black;
-    background-color: var(--cor-card);    
-    border-width:1px;    
-    font-size:14px;
-    overflow:hidden;
-    padding:10px 5px;
-    word-break:normal;    
-    text-align:center;
-    vertical-align:top
+    border-color: black;
+    background-color: var(--cor-card);
+    border-width: 1px;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+    text-align: center;
+    vertical-align: top
 }
 
 
-.columnValue {  
-    border-width:1px;      
-    overflow:hidden;    
-    word-break:normal;
-    font-weight:bold;
-    text-align:center;
-    vertical-align:top; 
-    
+.columnValue {
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: top;
+
 }
 
 .edit-button {
     height: 1.5em;
-    width: 1.5em;    
-    
+    width: 1.5em;
+
 }
 
 .remove-button {
     height: 1.5em;
     width: 1.5em;
+    border: none;
+    border-radius: .2em;
+    background-color: var(--cor-cabecalho);
+    color: white;
+    cursor: pointer;
     
+
 }
 
+.remove-button:hover {
+    background-color: var(--cor-fundo);
+    color: black;
+    font-weight: bold; 
+}
 
+@media screen and (max-width: 420px) {
+    .inputGlobals {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inputGlobals button {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .addClassificacao {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .addClassificacao input {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .addClassificacao button {
+        margin-bottom: 1em;
+    }
+}
 

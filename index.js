@@ -84,7 +84,7 @@ const createTable = (dataDaCompra, classificacaoDaCompra, descricaoDaCompra, val
    
     const buttonRemove = document.createElement('button')
     buttonRemove.classList = 'remove-button'
-    buttonRemove.innerHTML = 'X'
+    buttonRemove.innerHTML = 'X'    
     buttonRemove.id = (idObject - 1)
     //Função de remover linha da interface e do array no botão X
     buttonRemove.addEventListener('click', () => {
@@ -196,8 +196,7 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
 
     }
 
-    const resumoFinal = document.getElementById('resumo')
-    resumoFinal.innerHTML = lista
+    
 
     const saldoFinal = document.getElementById('saldoFinal')
     saldoFinal.textContent = `R$ ${calcularSaldo()}`
