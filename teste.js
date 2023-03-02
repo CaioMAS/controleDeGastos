@@ -8,20 +8,16 @@ const lista = [
     {dataDaCompra: "01/03/2023", classificacaoDaCompra: "Alimentação", descricaoDaCompra: "Comida", valorDaCompraComSinal: 2}
 ]
 
-const calcularSaldo = () => {
-    const somar = lista.reduce((valorAcumulado, item) => {
-        return Number(valorAcumulado) + Number(item.valorDaCompraComSinal)
-    }, 0)
-    return somar
-}
 
-console.log(calcularSaldo())
-
-const nova = []
-for (let i = 0; i < lista.length; i++) {
-    if (lista[i].classificacaoDaCompra === "Alimentação") {
-        nova.push(lista[i])
-    }
-}
-
-console.log(nova)
+function calcularGastosPorCategoria(lista) {
+    const gastosPorCategoria = lista.reduce((acc, item) => {
+      const categoria = item.classificacaoDaCompra;
+      const valor = item.valorDaCompraComSinal;
+      acc[categoria] = (acc[categoria] || 0) + valor;
+      return acc;
+    }, {});
+  
+    console.table(gastosPorCategoria);
+  }
+  
+  calcularGastosPorCategoria(lista);
