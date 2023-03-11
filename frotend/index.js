@@ -1,4 +1,3 @@
-
 //Variáveis
 let lista = []
 let item = {}
