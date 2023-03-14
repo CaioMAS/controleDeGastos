@@ -1,57 +1,60 @@
 //Variáveis
+const url = "http://localhost:3000/itens"
 let lista = []
 let item = {}
 let idObject = 0
 
-//Função que calcula o saldo
-const calcularSaldo = () => {
-    const somar = lista.reduce((valorAcumulado, item) => {
-        return Number(valorAcumulado) + Number(item.valorDaCompraComSinal)
-    }, 0)
-    return somar.toFixed(2)
+  //criar a função getItem que vai buscar as informações da API
+function getItem () {
+    axios.get(url)
+    .then(response => {
+        const data = response.data
+        renderResults.textContent = JSON.stringify(data)
+    })
+    .catch(error => console.log(error))
+}
+getItem() 
+
+
+function addNewItem (item) {
+    axios.post(url, item )
+    .then(response => {
+        console.log(response.data)
+    })
+    .catch(error => console.log(error))
+    
+}
+//addNewItem ()
+
+function updateItem () {
+    axios.put(`${url}/641077b19b25c1e1f5ff09a3`, updateItem2)
+    .then(response => {
+        alert(JSON.stringify(response.data))
+    })
+    .catch(error => console.log(error))
+}
+//updateItem()
+
+function deleteItem () {
+    axios.delete(`${url}/6410779c9b25c1e1f5ff09a0`)
+    .then(response => {
+        alert(JSON.stringify(response.data))
+    })
+    .catch(error => console.log(error))
 }
 
-//Função que calcula o valor de entrada
-const calcularEntrada = () => {
+//deleteItem ()
 
-    let valorEntrada = 0
-    for (let i = 0; i < lista.length; i++) {
-        if (lista[i].valorDaCompraComSinal > 0) {
-            valorEntrada += Number(lista[i].valorDaCompraComSinal)
-        }
-    }
-    return valorEntrada.toFixed(2)
+function getOneItem () {
+    axios.get(`${url}/641077b19b25c1e1f5ff09a3`)    
+    .then(response => {
+        const data = response.data
+        renderResults.textContent = JSON.stringify(data)
+    })
+    .catch(error => console.log(error))
 }
 
-//Função que calcula o valor de saída
-const calcularSaida = () => {
-
-    let valorSaida = 0
-    for (let i = 0; i < lista.length; i++) {
-        if (lista[i].valorDaCompraComSinal < 0) {
-            valorSaida += Number(lista[i].valorDaCompraComSinal)
-        }
-    }
-    return valorSaida.toFixed(2)
-   
-}
-
-/*Função que juntas as classes e calcula o somatório de cada classe
-Essa função está apenas aparecendo no console, será usadas posteriormente
-para alimentar a interface do usuário com esse resumo*/
-const resumoClassificacao = () => {
-    const resumo = lista.reduce((result, item, index) => {
-      if (!result[item.classificacaoDaCompra]) {
-        result[item.classificacaoDaCompra] = {
-          id: index,
-          total: 0
-        };
-      }
-      result[item.classificacaoDaCompra].total += Number(item.valorDaCompraComSinal);
-      return result;
-    }, {});
-    console.log(resumo);
-  };
+//getOneItem ()
 
 
 //Essa função cria as linhas, colunas e botões quando aciona o botão ADICIONAR
@@ -92,28 +95,12 @@ const createTable = (dataDaCompra, classificacaoDaCompra, descricaoDaCompra, val
             if (lista[i].id == buttonRemove.id) {
                 lista.splice(i, 1)
             }
-        }
-    
-    /*Chamando novamente as funções quando o botão X é acionado para atualizar na interface os valores  */   
-    const saldoFinal = document.getElementById('saldoFinal')
-    saldoFinal.textContent = `R$ ${calcularSaldo()}`
-
-    const entradaDisplay = document.getElementById('valorDeEntrada')
-    entradaDisplay.textContent = `R$ ${calcularEntrada()}`
-
-    const saidaDisplay = document.getElementById('valorSaida')
-    saidaDisplay.textContent = `R$ ${calcularSaida()}`
-
-    resumoClassificacao()
-
-    console.table(lista)
-
+        }  
+   
     })
-
     bodyTable.appendChild(newRow)
     newRow.append(newColumnDate, newColumnClass, newColumnDescription, newColumnValue, newColumnEdit, newColumnRemove)    
     newColumnRemove.appendChild(buttonRemove)
-
 }
 
 //Função para criar as classificações
@@ -179,11 +166,13 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
     const item = {}
     const objectIndex = idObject
     idObject++
-    item.id = objectIndex
-    item.dataDaCompra = dataDaCompra
-    item.classificacaoDaCompra = classificacaoDaCompra
-    item.descricaoDaCompra = descricaoDaCompra
-    item.valorDaCompraComSinal = valorDaCompraComSinal
+    //item.id = objectIndex
+    item.data = dataDaCompra
+    item.classificacao = classificacaoDaCompra
+    item.descricao = descricaoDaCompra
+    item.valor = valorDaCompraComSinal
+
+    console.log(item)
 
     if (dataDaCompra == "" || classificacaoDaCompra == "" || descricaoDaCompra == "" || valorDaCompraComSinal == "") {
         alert("Favor preencher todos os dados")
@@ -191,25 +180,14 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
         lista.push(item)
         createTable(dataDaCompra, classificacaoDaCompra, descricaoDaCompra, valorDaCompraComSinal)
         cleanInput()
-        resumoClassificacao()
+        addNewItem(item)   
+                  
 
     }
-
-    
-
-    const saldoFinal = document.getElementById('saldoFinal')
-    saldoFinal.textContent = `R$ ${calcularSaldo()}`
-
-    const entradaDisplay = document.getElementById('valorDeEntrada')
-    entradaDisplay.textContent = `R$ ${calcularEntrada()}`
-
-    const saidaDisplay = document.getElementById('valorSaida')
-    saidaDisplay.textContent = `R$ ${calcularSaida()}`
-
-    console.table(lista)
-    
-
+   
 })
+
+
 
 
 

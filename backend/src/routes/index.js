@@ -1,5 +1,6 @@
-import express from "express";
+import express from 'express'
 import itens from "./itensRoutes.js"
+
 
 const routes = (app) => {
     app.route('/').get((req, res) => {
@@ -10,6 +11,7 @@ const routes = (app) => {
         express.json(),
         itens
     )
+
 }
 
 export default routes

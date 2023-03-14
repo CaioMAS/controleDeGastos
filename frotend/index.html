@@ -8,6 +8,8 @@
      <!--Font Awesome-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Controle Financeiro</title>
+    <!--CDN Axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header>
@@ -20,7 +22,7 @@
                 <h4>Entradas</h4>
                 <i class="fa-solid fa-arrow-up"></i>              
             </div>
-            <h3 id="valorDeEntrada">R$ 0.00</h3>
+            <h3 id="juliagostosa">R$ 0.00</h3>
         </div>
 
         <div class="summaryTable">
@@ -28,7 +30,7 @@
                 <h4>Saídas</h4>
                 <i class="fa-solid fa-arrow-down"></i>
             </div>
-            <h3 id="valorSaida">R$ 0.00</h3>
+            <h3 id="julialinda">R$ 0.00</h3>
         </div>
 
         <div class="summaryTable">
@@ -99,6 +101,9 @@
                 
             </tbody>
             </table>
+    </section>
+    <section>
+        <div id="renderResults"></div>
     </section>    
 
     <script src="index.js"></script>

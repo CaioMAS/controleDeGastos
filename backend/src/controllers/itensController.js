@@ -10,7 +10,7 @@ class ItemController {
 
     //get por id
     static listarItemPorId = (req, res) => {
-        const id = req.params.id 
+       const id = req.params.id 
         itens.findById(id, (err, itens) => {
             if(err) {
                 res.status(400).send({message: `${err} - ID do item não localizado`})
