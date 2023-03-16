@@ -185,48 +185,20 @@ h1 {
 
 }
 
-.tg {
-    width: 100%;
+table {
     border-collapse: collapse;
-    border-spacing: 0;
-}
-
-.tg .columHead {
-    border-color: black;
-    line-height: 1em;
-    background-color: var(--cor-cabecalho);
-    border-width: 1px;
-    font-size: 14px;
-    overflow: hidden;
-    padding: 10px 5px;
-    word-break: normal;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: top
-}
-
-.tg .columnBody {
-    border-color: black;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
     background-color: var(--cor-card);
-    border-width: 1px;
-    font-size: 14px;
-    overflow: hidden;
-    padding: 10px 5px;
-    word-break: normal;
-    text-align: center;
-    vertical-align: top
-}
-
-
-.columnValue {
-    border-width: 1px;
-    overflow: hidden;
-    word-break: normal;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: top;
-
-}
+  }
 
 .edit-button {
     height: 1.5em;

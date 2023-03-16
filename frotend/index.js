@@ -4,104 +4,68 @@ let lista = []
 let item = {}
 let idObject = 0
 
-  //criar a função getItem que vai buscar as informações da API
-function getItem () {
+//criar a função getItem que vai buscar as informações da API
+function getItem() {
     axios.get(url)
-    .then(response => {
-        const data = response.data
-        renderResults.textContent = JSON.stringify(data)
-    })
-    .catch(error => console.log(error))
+        .then(response => {
+            const data = response.data
+            const tableBody = document.querySelector('table tbody')
+            data.forEach(item => {
+                const row = tableBody.insertRow()                
+                row.insertCell().innerText = item.data
+                row.insertCell().innerText = item.classificacao
+                row.insertCell().innerText = item.descricao
+                row.insertCell().innerText = "R$ " + item.valor.toFixed(2)
+                const buttonCell = row.insertCell()                
+                const button = document.createElement('button')
+                buttonCell.appendChild(button)
+                button.innerText = 'Remover'
+            })
+        })
+        .catch(error => console.log(error))
 }
-getItem() 
+getItem()
 
 
-function addNewItem (item) {
-    axios.post(url, item )
-    .then(response => {
-        console.log(response.data)
-    })
-    .catch(error => console.log(error))
-    
+function addNewItem(item) {
+    axios.post(url, item)
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => console.log(error))
+
 }
 //addNewItem ()
 
-function updateItem () {
+function updateItem() {
     axios.put(`${url}/641077b19b25c1e1f5ff09a3`, updateItem2)
-    .then(response => {
-        alert(JSON.stringify(response.data))
-    })
-    .catch(error => console.log(error))
+        .then(response => {
+            alert(JSON.stringify(response.data))
+        })
+        .catch(error => console.log(error))
 }
 //updateItem()
 
-function deleteItem () {
-    axios.delete(`${url}/6410779c9b25c1e1f5ff09a0`)
-    .then(response => {
-        alert(JSON.stringify(response.data))
-    })
-    .catch(error => console.log(error))
+function deleteItem() {
+    axios.delete(`${url}/6410846d9b25c1e1f5ff0a4e`)
+        .then(response => {
+            alert(JSON.stringify(response.data))
+        })
+        .catch(error => console.log(error))
 }
-
 //deleteItem ()
 
-function getOneItem () {
-    axios.get(`${url}/641077b19b25c1e1f5ff09a3`)    
-    .then(response => {
-        const data = response.data
-        renderResults.textContent = JSON.stringify(data)
-    })
-    .catch(error => console.log(error))
+function getOneItem() {
+    axios.get(`${url}/641077b19b25c1e1f5ff09a3`)
+        .then(response => {
+            const data = response.data
+            renderResults.textContent = JSON.stringify(data)
+        })
+        .catch(error => console.log(error))
 }
 
 //getOneItem ()
 
-
-//Essa função cria as linhas, colunas e botões quando aciona o botão ADICIONAR
-const createTable = (dataDaCompra, classificacaoDaCompra, descricaoDaCompra, valorDaCompra) => {
-    const bodyTable = document.getElementById('bodyTable')
-    const newRow = document.createElement('tr')
-    newRow.id = (idObject - 1)
-
-    const newColumnDate = document.createElement('td')
-    newColumnDate.classList = 'columnBody'
-    newColumnDate.innerText = dataDaCompra
-
-    const newColumnClass = document.createElement('td')
-    newColumnClass.classList = 'columnBody'
-    newColumnClass.innerText = classificacaoDaCompra
-
-    const newColumnDescription = document.createElement('td')
-    newColumnDescription.classList = 'columnBody'
-    newColumnDescription.innerText = descricaoDaCompra
-
-    const newColumnValue = document.createElement('td')
-    newColumnValue.classList = 'columnBody'
-    newColumnValue.innerText = valorDaCompra
-
-    const newColumnEdit = document.createElement('td')
-    newColumnEdit.classList = 'columnValue'
-    const newColumnRemove = document.createElement('td')
-    newColumnRemove.classList = 'columnValue'
-   
-    const buttonRemove = document.createElement('button')
-    buttonRemove.classList = 'remove-button'
-    buttonRemove.innerHTML = 'X'    
-    buttonRemove.id = (idObject - 1)
-    //Função de remover linha da interface e do array no botão X
-    buttonRemove.addEventListener('click', () => {
-        bodyTable.removeChild(newRow)
-        for (let i = 0; i < lista.length; i++) {
-            if (lista[i].id == buttonRemove.id) {
-                lista.splice(i, 1)
-            }
-        }  
-   
-    })
-    bodyTable.appendChild(newRow)
-    newRow.append(newColumnDate, newColumnClass, newColumnDescription, newColumnValue, newColumnEdit, newColumnRemove)    
-    newColumnRemove.appendChild(buttonRemove)
-}
 
 //Função para criar as classificações
 const createClass = () => {
@@ -123,7 +87,7 @@ document.getElementById('addClassificacao').addEventListener('click', () => {
 //Função para limpar o input quando o botão adicionar foi acionado
 const cleanInput = () => {
     dataDaCompra = document.getElementById('dataDoItem').value = ""
-    
+
     descricaoDaCompra = document.getElementById('descricaoDoItem').value = ""
     valorDaCompra = document.getElementById('valorDoItem').value = ""
     const inputEntradaSaida = document.getElementsByName('entradaSaida').value = ""
@@ -177,14 +141,11 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
     if (dataDaCompra == "" || classificacaoDaCompra == "" || descricaoDaCompra == "" || valorDaCompraComSinal == "") {
         alert("Favor preencher todos os dados")
     } else {
-        lista.push(item)
-        createTable(dataDaCompra, classificacaoDaCompra, descricaoDaCompra, valorDaCompraComSinal)
         cleanInput()
-        addNewItem(item)   
-                  
+        addNewItem(item)
 
     }
-   
+
 })
 
 
