@@ -2,7 +2,7 @@
 const url = "http://localhost:3000/itens"
 let lista = []
 let item = {}
-let idObject = 0
+
 
 //criar a função getItem que vai buscar as informações da API
 function getItem() {
@@ -11,16 +11,19 @@ function getItem() {
             const data = response.data
             const tableBody = document.querySelector('table tbody')
             data.forEach(item => {
-                const row = tableBody.insertRow()                
+                const row = tableBody.insertRow()
                 row.insertCell().innerText = item.data
                 row.insertCell().innerText = item.classificacao
                 row.insertCell().innerText = item.descricao
                 row.insertCell().innerText = "R$ " + item.valor.toFixed(2)
-                const buttonCell = row.insertCell()                
+                const buttonCell = row.insertCell()
                 const button = document.createElement('button')
                 buttonCell.appendChild(button)
                 button.innerText = 'Remover'
+                button.classList.add('remove-btn')
+                button.id = item._id
             })
+
         })
         .catch(error => console.log(error))
 }
@@ -46,10 +49,11 @@ function updateItem() {
 }
 //updateItem()
 
-function deleteItem() {
-    axios.delete(`${url}/6410846d9b25c1e1f5ff0a4e`)
+function deleteItem(id) {
+    axios.delete(`${url}/${id}`)
         .then(response => {
             alert(JSON.stringify(response.data))
+            location.reload() 
         })
         .catch(error => console.log(error))
 }
@@ -87,13 +91,27 @@ document.getElementById('addClassificacao').addEventListener('click', () => {
 //Função para limpar o input quando o botão adicionar foi acionado
 const cleanInput = () => {
     dataDaCompra = document.getElementById('dataDoItem').value = ""
-
     descricaoDaCompra = document.getElementById('descricaoDoItem').value = ""
     valorDaCompra = document.getElementById('valorDoItem').value = ""
     const inputEntradaSaida = document.getElementsByName('entradaSaida').value = ""
     dataDaCompra = document.getElementById('dataDoItem').focus()
 
 }
+
+//Função para acionar o botão remover
+const remover = () => {
+    document.addEventListener('click', (e) => {
+        const targetEl = e.target
+        if (targetEl.classList.contains("remove-btn")) {            
+            const id = targetEl.id
+            deleteItem(id) 
+                                  
+        }
+    })
+}
+
+remover()
+
 
 //Função que aciona o evento do botão adicionar e faz aparecer as informações na tela
 document.getElementById('btnAddItem').addEventListener('click', (ev) => {
@@ -127,10 +145,7 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
     }
 
     //Cria cada objeto dentro do array quando aciona o botão adicionar
-    const item = {}
-    const objectIndex = idObject
-    idObject++
-    //item.id = objectIndex
+    const item = {} 
     item.data = dataDaCompra
     item.classificacao = classificacaoDaCompra
     item.descricao = descricaoDaCompra
@@ -143,7 +158,7 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
     } else {
         cleanInput()
         addNewItem(item)
-
+        location.reload()
     }
 
 })

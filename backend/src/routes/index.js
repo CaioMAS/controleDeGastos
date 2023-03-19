@@ -1,5 +1,6 @@
 import express from 'express'
 import itens from "./itensRoutes.js"
+import classificacoes from "./classificacoesRoutes.js"
 
 
 const routes = (app) => {
@@ -9,7 +10,9 @@ const routes = (app) => {
 
     app.use (
         express.json(),
-        itens
+        itens,
+        classificacoes
+        
     )
 
 }
