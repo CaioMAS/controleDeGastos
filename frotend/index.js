@@ -2,6 +2,8 @@
 const url = "http://localhost:3000/itens"
 const urlClassificacoes = "http://localhost:3000/classificacoes"
 let lista = []
+let soma = 0
+let saida = 0
 
 
 
@@ -64,6 +66,32 @@ function getClassificacao() {
         .catch(error => console.log(error))
 }
 getClassificacao()
+
+function getParaResumoDisplay() {
+    axios.get(url)
+        .then(response => {
+            const data = response.data
+            const entradaDisplay = document.getElementById('entradas')
+            const saidaDisplay = document.getElementById('saidas')
+            const saldoDisplay = document.getElementById('saldoFinal')
+            data.forEach(item => {
+                if (item.valor > 0) {
+                    soma += item.valor
+                    entradaDisplay.textContent = `R$ ${soma.toFixed(2)}`
+                } else if (item.valor < 0) {
+                    saida += item.valor
+                    saidaDisplay.textContent = `R$ ${saida.toFixed(2)}`
+                }
+            })
+            let saldo = soma + saida
+            console.log(saldo)
+            saldoDisplay.textContent = `R$ ${saldo.toFixed(2)}`
+
+        })
+        .catch(error => console.log(error))
+}
+
+getParaResumoDisplay()
 
 
 //adiciona itens de saída / entrada no banco de dados
@@ -158,7 +186,7 @@ const removerClassificacao = () => {
     document.getElementById('excluirClassificacao').addEventListener('click', () => {
         //const classificacao = document.getElementById('classificacao').value
         getClassificacaoPorId()
-        
+
     })
 
 }

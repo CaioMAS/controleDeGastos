@@ -1,23 +1,28 @@
 const classificacoes = [
     {
         "id": 1,
-        "classificacao": "Alimentação"
+        "classificacao": "Alimentação",
+        "valor": 6.5
     },
     {
         "id": 2,
-        "classificacao": "Lazer"
+        "classificacao": "Lazer",
+        "valor": 10.2
     },
     {
         "id": 3,
-        "classificacao": "Plano de saúde"
+        "classificacao": "Plano de saúde",
+        "valor": 11.8
     },
     {
         "id": 4,
-        "classificacao": "Telefone"
+        "classificacao": "Telefone",
+        "valor": 11.8
     },
     {
         "id": 5,
-        "classificacao": "Transporte"
+        "classificacao": "Transporte",
+        "valor": 11.8
     },
 ]
 
@@ -31,4 +36,6 @@ const buscarClass = () => {
 }
 
 buscarClass()
+
+
 
