@@ -135,18 +135,21 @@ h1 {
 
 #btnAddItem,
 #addClassificacao,
-#addMes {
+#addMes,
+#excluirClassificacao {
     border: none;
     border-radius: .2em;
     background-color: var(--cor-cabecalho);
     color: white;
     padding: .3em .5em;
     cursor: pointer;
+    margin-right: 0.3em;
 }
 
 #btnAddItem:hover,
 #addClassificacao:hover,
-#addMes:hover {
+#addMes:hover,
+#excluirClassificacao:hover {
     background-color: var(--cor-fundo);
     color: black;
     font-weight: bold;

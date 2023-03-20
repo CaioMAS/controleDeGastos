@@ -1,10 +1,11 @@
 //Variáveis
 const url = "http://localhost:3000/itens"
+const urlClassificacoes = "http://localhost:3000/classificacoes"
 let lista = []
-let item = {}
 
 
-//criar a função getItem que vai buscar as informações da API
+
+//criar a função getItem que vai buscar os itens na API API
 function getItem() {
     axios.get(url)
         .then(response => {
@@ -29,7 +30,43 @@ function getItem() {
 }
 getItem()
 
+//função que vai buscar classificação por ID
+function getClassificacaoPorId() {
+    axios.get(urlClassificacoes)
+        .then(response => {
+            const data = response.data
+            const classificacao = document.getElementById('classificacao').value
+            data.forEach(item => {
+                if (item.classificacao === classificacao) {
+                    const id = item._id
+                    deleteCLassificacao(id)
+                }
+            })
 
+        })
+        .catch(error => console.log(error))
+}
+
+
+//criar a função getItem que vai buscar as classificações e cria options no silect na  API
+function getClassificacao() {
+    axios.get(urlClassificacoes)
+        .then(response => {
+            const data = response.data
+            const select = document.querySelector('#options')
+            data.forEach(classif => {
+                const option = document.createElement('option')
+                option.value = classif.classificacao
+                option.text = classif.classificacao
+                select.appendChild(option)
+            })
+        })
+        .catch(error => console.log(error))
+}
+getClassificacao()
+
+
+//adiciona itens de saída / entrada no banco de dados
 function addNewItem(item) {
     axios.post(url, item)
         .then(response => {
@@ -38,8 +75,18 @@ function addNewItem(item) {
         .catch(error => console.log(error))
 
 }
-//addNewItem ()
 
+//adiciona classificação no banco de dados
+function addNewClassificacao(classificacao) {
+    axios.post(urlClassificacoes, classificacao)
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => console.log(error))
+
+}
+
+//altera o item, não está sendo utilizada no código
 function updateItem() {
     axios.put(`${url}/641077b19b25c1e1f5ff09a3`, updateItem2)
         .then(response => {
@@ -47,18 +94,28 @@ function updateItem() {
         })
         .catch(error => console.log(error))
 }
-//updateItem()
 
+//deleta item do banco de dados de saída / entrada
 function deleteItem(id) {
     axios.delete(`${url}/${id}`)
         .then(response => {
             alert(JSON.stringify(response.data))
-            location.reload() 
+            location.reload()
         })
         .catch(error => console.log(error))
 }
-//deleteItem ()
 
+//deleta a classificação do banco de dados
+function deleteCLassificacao(id) {
+    axios.delete(`${urlClassificacoes}/${id}`)
+        .then(response => {
+            alert(JSON.stringify(response.data))
+            location.reload()
+        })
+        .catch(error => console.log(error))
+}
+
+//busca um item por ID, não está sendo utilizada
 function getOneItem() {
     axios.get(`${url}/641077b19b25c1e1f5ff09a3`)
         .then(response => {
@@ -68,25 +125,10 @@ function getOneItem() {
         .catch(error => console.log(error))
 }
 
-//getOneItem ()
-
-
-//Função para criar as classificações
-const createClass = () => {
-    const classificacaoAdicionada = document.getElementById('classificacao')
-    const select = document.querySelector('#options')
-    const newOption = document.createElement('option')
-    newOption.value = classificacaoAdicionada.value
-    newOption.text = classificacaoAdicionada.value
-
-    select.appendChild(newOption)
+const cleanInputClassificacao = () => {
+    const classificacaoAdicionada = document.getElementById('classificacao').value = ""
 }
 
-//Botão para adicionar as classificações
-document.getElementById('addClassificacao').addEventListener('click', () => {
-    createClass()
-    const classificacaoAdicionada = document.getElementById('classificacao').value = ""
-})
 
 //Função para limpar o input quando o botão adicionar foi acionado
 const cleanInput = () => {
@@ -98,19 +140,45 @@ const cleanInput = () => {
 
 }
 
-//Função para acionar o botão remover
+//Função para acionar o botão remover de cada item
 const remover = () => {
     document.addEventListener('click', (e) => {
         const targetEl = e.target
-        if (targetEl.classList.contains("remove-btn")) {            
+        if (targetEl.classList.contains("remove-btn")) {
             const id = targetEl.id
-            deleteItem(id) 
-                                  
+            deleteItem(id)
+
         }
     })
 }
-
 remover()
+
+//função que aciona o botão que vai remover a classificação
+const removerClassificacao = () => {
+    document.getElementById('excluirClassificacao').addEventListener('click', () => {
+        //const classificacao = document.getElementById('classificacao').value
+        getClassificacaoPorId()
+        
+    })
+
+}
+removerClassificacao()
+
+//Botão para adicionar as classificações no banco de dados
+document.getElementById('addClassificacao').addEventListener('click', () => {
+    const classificacaoAdicionada = document.getElementById('classificacao').value
+    const classificacao = {}
+    classificacao.classificacao = classificacaoAdicionada
+    if (classificacaoAdicionada == "") {
+        alert("Favor preencher a classificação")
+    } else {
+        addNewClassificacao(classificacao)
+        cleanInputClassificacao()
+        location.reload()
+    }
+
+
+})
 
 
 //Função que aciona o evento do botão adicionar e faz aparecer as informações na tela
@@ -145,7 +213,7 @@ document.getElementById('btnAddItem').addEventListener('click', (ev) => {
     }
 
     //Cria cada objeto dentro do array quando aciona o botão adicionar
-    const item = {} 
+    const item = {}
     item.data = dataDaCompra
     item.classificacao = classificacaoDaCompra
     item.descricao = descricaoDaCompra
