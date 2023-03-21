@@ -32,6 +32,44 @@ function getItem() {
 }
 getItem()
 
+//função responsável por alimentar as classificações
+function getResumoClassificacao() {
+    axios.get(url)
+        .then(response => {
+            const data = response.data;
+
+            // Objeto para armazenar a soma dos valores negativos por classificação
+            const resumo = data.reduce((acc, item) => {
+                if (item.classificacao in acc && item.valor < 0) {
+                    acc[item.classificacao] += item.valor;
+                } else if (item.valor < 0) {
+                    acc[item.classificacao] = item.valor;
+                }
+                return acc;
+
+            }, {});
+
+            // Calcula o total de saídas negativas
+            const totalNegativo = Object.values(resumo).reduce((acc, valor) => acc + valor, 0);
+
+            // Adiciona as linhas na tabela e calcula o percentual gasto
+            const tableBody = document.querySelector('#tableResumo #bodyResumo');
+            for (const classificacao in resumo) {
+                const valor = resumo[classificacao];
+                const row = tableBody.insertRow();
+                row.insertCell().innerText = classificacao;
+                row.insertCell().innerText = `R$ ${Math.abs(valor).toFixed(2)}`;
+
+                // Calcula e adiciona a coluna com o percentual gasto
+                const percentual = Math.abs(valor) / Math.abs(totalNegativo) * 100;
+                row.insertCell().innerText = `${percentual.toFixed(2)}%`;
+            }
+        })
+        .catch(error => console.log(error));
+}
+
+getResumoClassificacao();
+
 //função que vai buscar classificação por ID
 function getClassificacaoPorId() {
     axios.get(urlClassificacoes)

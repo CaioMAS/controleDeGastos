@@ -9,7 +9,8 @@ class ItemController {
             } else {
                 const itensFormatados = itens.map((item) => ({
                     ...item.toObject(),
-                    data: new Date(item.data).toLocaleDateString(),
+                    data: new Date(item.data).toLocaleDateString() ,
+                    
                 }));
                 res.status(200).json(itensFormatados);
             }
