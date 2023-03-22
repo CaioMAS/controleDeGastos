@@ -8,12 +8,50 @@ function onChangePassword() {
     togglePasswordErrors();
 }
 
+//acionada quando aperta o botão Entrar
 function login() {
-    window.location.href = "pages/home/home.html"
+    showLoading()
+    firebase.auth().signInWithEmailAndPassword(
+        form.email().value, form.password().value
+    ).then(response => {
+        hideLoading()
+        window.location.href = "../index.html"
+        //"pages/home/home.html"
+    }).catch(error => {
+        hideLoading()
+        alert(getErrorMessage(error))
+        console.log('error', error)
+    })
+
+}
+
+function getErrorMessage(error) {
+    if (error.code == "auth/user-not-found") {
+        return "Usuário não encontrada"
+    } 
+    if (error.code == "auth/wrong-password") {
+        return "Senha inválida"
+    }
+    
+    return error.message
+    
+
 }
 
 function register() {
+    showLoading()
     window.location.href = "pages/register/register.html"
+}
+
+function recoverPassword() {
+    showLoading()
+    firebase.auth().sendPasswordResetEmail(form.email().value).then(() => {
+        hideLoading() 
+        alert("Email enviado com sucesso")
+    }).catch(error => {
+        hideLoading()
+        alert(getErrorMessage(error))
+    })
 }
 
 function toggleEmailErrors() {

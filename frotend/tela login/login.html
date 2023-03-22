@@ -8,11 +8,10 @@
     <title>Login</title>
     <link rel="stylesheet" href="styleLogin.css">
     <link rel="stylesheet" href="globalStyle.css">
-    <script src="login.js"></script>
-    <script src="validation.js"></script>
+
 </head>
 
-<body>
+<body class="centralize">
     <form>
         <div class="form-field">
             <div><label>Email</label></div>
@@ -26,7 +25,7 @@
             <div class="error" id="password-required-error">Senha é obrigatória</div>
         </div>
         <div>
-            <button type="button" class="clear" id="recover-password-button" disabled="true">Recuperar senha</button>
+            <button type="button" class="clear" id="recover-password-button" disabled="true" onclick="recoverPassword()">Recuperar senha</button>
         </div>
         <div>
             <button type="button" class="solid" id="login-button" disabled="true" onclick="login()">Entrar</button>
@@ -36,5 +35,25 @@
         </div>
     </form>
 </body>
+
+
+<script src="login.js"></script>
+<script src="validation.js"></script>
+<script src="loading.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCm24uvbZLvtX4tEthR97E_Edl1Rs5Coew",
+        authDomain: "controledegastos-75a14.firebaseapp.com",
+        projectId: "controledegastos-75a14",
+        storageBucket: "controledegastos-75a14.appspot.com",
+        messagingSenderId: "139337365914",
+        appId: "1:139337365914:web:ae7038951763304378a223"
+    };
+    firebase.initializeApp(firebaseConfig)
+
+    
+</script>
 
 </html>
