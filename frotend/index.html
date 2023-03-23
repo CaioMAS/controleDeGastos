@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-     <!--Font Awesome-->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Controle Financeiro</title>
-    
+
+
     <!--CDN Axios-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Controle financeiro</h1>
+        <button id="btnSair" type="button" onclick="logout()">Sair</button>
     </header>
 
     <section class="monthlySummary">
         <div class="summaryTable">
             <div>
                 <h4>Entradas</h4>
-                <i class="fa-solid fa-arrow-up"></i>              
+                <i class="fa-solid fa-arrow-up"></i>
             </div>
             <h3 id="entradas"></h3>
         </div>
@@ -51,7 +57,7 @@
                 </select>
             </div>
             <button id="addMes">Adicionar mês</button>
-        </div>       
+        </div>
     </section>
 
     <section class="addClassificacao">
@@ -68,7 +74,7 @@
         <div class="inputEntries">
             <label for="options">Classificação</label>
             <select name="options" id="options">
-                <option value="" selected></option>                
+                <option value="" selected></option>
             </select>
         </div>
         <div class="inputEntries">
@@ -82,47 +88,56 @@
         <div>
             <input type="radio" name="entradaSaida" id="entrada" value="entrada">
             <label for="entrada">Entrada</label>
-            
+
             <input type="radio" name="entradaSaida" id="saída" value="saida">
-            <label for="saida">Saída</label>            
+            <label for="saida">Saída</label>
         </div>
         <button id="btnAddItem">Adicionar</button>
-    </section>   
+    </section>
 
     <section class="tableContainer">
         <table class="tg" id="tableGeral">
             <thead>
-              <tr>
-                <th>Data</th>
-                <th>Classificação</th>
-                <th>Descrição</th>
-                <th>Valor</th>              
-              </tr>
+                <tr>
+                    <th>Data</th>
+                    <th>Classificação</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                </tr>
             </thead>
             <tbody id="bodyTable">
-                
+
             </tbody>
-            </table>
+        </table>
     </section>
 
     <section class="ContinerResumo">
         <table class="tg" id="tableResumo">
             <thead>
-              <tr>                
-                <th>Classificação</th>                
-                <th>Valor</th>    
-                <th>Percentual dos gastos</th>          
-              </tr>
+                <tr>
+                    <th>Classificação</th>
+                    <th>Valor</th>
+                    <th>Percentual dos gastos</th>
+                </tr>
             </thead>
             <tbody id="bodyResumo">
-                
+
             </tbody>
-            </table>
+        </table>
     </section>
     <section>
         <div id="renderResults"></div>
-    </section>    
+    </section>
 
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+    <script src="../frotend/tela login/firebase-init.js"></script>
+    
+    <script src="tela login/auth-guard.js"></script>
     <script src="index.js"></script>
+
 </body>
+
 </html>

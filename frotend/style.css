@@ -21,8 +21,9 @@ header {
     margin-bottom: 2em;
     background-color: var(--cor-cabecalho);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 1em;
 }
 
 h1 {
@@ -148,7 +149,8 @@ h1 {
 #btnAddItem,
 #addClassificacao,
 #addMes,
-#excluirClassificacao {
+#excluirClassificacao,
+#btnSair {
     border: none;
     border-radius: .2em;
     background-color: var(--cor-cabecalho);
@@ -161,7 +163,8 @@ h1 {
 #btnAddItem:hover,
 #addClassificacao:hover,
 #addMes:hover,
-#excluirClassificacao:hover {
+#excluirClassificacao:hover,
+#btnSair:hover {
     background-color: var(--cor-fundo);
     color: black;
     font-weight: bold;

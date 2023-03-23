@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,27 +9,52 @@
     <link rel="stylesheet" href="../../globalStyle.css">
     <link rel="stylesheet" href="register.css">
 </head>
+
 <body class="centralize">
     <form>
         <div class="form-field">
-            <div><label>Email</label></div>
-            <input type="email" placeholder="seu@email.com">
+            <div>
+                <label>Email</label>
+            </div>
+            <input type="email" placeholder="seu@email.com" id="email" onchange="onChangeEmail()">
+            <div class="error" id="email-required-error">Email é obrigatório</div>
+            <div class="error" id="email-invalid-error">Email é inválido</div>
         </div>
         <div class="form-field">
-            <div><label>Senha</label></div>
-            <input type="password" name="" id="" placeholder="Senha">
+            <div>
+                <label>Senha</label>
+            </div>
+            <input type="password" id="password" placeholder="Senha" onchange="onChangePassword()">
+            <div class="error" id="password-required-error">Senha é obrigatório</div>
+            <div class="error" id="password-min-length-error">Senha deve ter pelo menos 6 caracteres</div>
         </div>
         <div class="form-field">
-            <div><label>Confirmar senha</label></div>
-            <input type="password" name="" id="" placeholder="Confirmar senha">
+            <div>
+                <label>Confirmar senha</label>
+            </div>
+            <input type="password" id="confirmPassword" placeholder="Confirmar senha"
+                onchange="onChangeConfirmPassword()">
+            <div class="error" id="password-doesnt-match-error">Senha e confirmar senha devem ser iguais</div>
+
         </div>
         <div>
-            <button type="button" class="solid">Registrar</button>
+            <button type="button" class="solid" disabled="true" id="register-button"
+                onclick="register()">Registrar</button>
         </div>
         <div>
             <button type="button" class="outline">Login</button>
         </div>
 
-    </form>
+    </form>  
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-auth-compat.js"></script>
+    <script src="../../firebase-init.js"></script>
+
+    <script src="register.js"></script>
+    <script src="../../validation.js"></script>
+    <script src="../../loading.js"></script>
 </body>
+
 </html>

@@ -5,7 +5,15 @@ let lista = []
 let soma = 0
 let saida = 0
 
+//vai dar função ao botão sair
 
+function logout() {
+    firebase.auth().signOut().then(() => {
+        window.location.href = "../frotend/tela login/login.html"
+    }).catch(() => {
+        alert('Erro ao fazer logout')
+    })
+}
 
 //criar a função getItem que vai buscar os itens na API API
 function getItem() {
